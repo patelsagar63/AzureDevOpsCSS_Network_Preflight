@@ -1,0 +1,42 @@
+
+{
+  "manifestVersion": 1,
+  "id": "network-preflight",
+  "publisher": "YOUR_PUBLISHER_ID",
+  "version": "1.0.0",
+  "name": "Network Preflight (HTTP/DNS/TCP)",
+  "description": "Validate reachability of critical endpoints from Azure Pipelines agents before production deployments.",
+  "public": false,
+  "categories": [ "Azure Pipelines" ],
+  "targets": [
+    { "id": "Microsoft.VisualStudio.Services" }
+  ],
+  "icons": {
+    "default": "images/extension-icon.png"
+  },
+  "files": [
+    { "path": "tasks" },
+    { "path": "README.md" },
+    { "path": "images" }
+  ],
+  "contributions": [
+    {
+      "id": "NetworkPreflight.HttpCheck",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [ "ms.vss-distributed-task.tasks" ],
+      "properties": { "name": "tasks/HttpCheckV1/task.json" }
+    },
+    {
+      "id": "NetworkPreflight.DnsLookup",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [ "ms.vss-distributed-task.tasks" ],
+      "properties": { "name": "tasks/DnsLookupV1/task.json" }
+    },
+    {
+      "id": "NetworkPreflight.TcpProbe",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [ "ms.vss-distributed-task.tasks" ],
+      "properties": { "name": "tasks/TcpProbeV1/task.json" }
+    }
+  ]
+}

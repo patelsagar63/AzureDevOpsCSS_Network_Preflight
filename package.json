@@ -1,0 +1,24 @@
+{
+  "name": "network-preflight",
+  "version": "1.0.0",
+  "description": "Azure DevOps extension that validates HTTP/DNS/TCP connectivity from pipeline agents before critical releases.",
+  "private": true,
+  "license": "MIT",
+  "author": "Azure DevOps Support",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "git clean -fdX",
+    "package": "tfx extension create --manifest-globs vss-extension.json",
+    "lint": "echo \"(add ESLint if desired)\""
+  },
+  "dependencies": {
+    "azure-pipelines-task-lib": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "typescript": "^5.6.3"
+  }
+}

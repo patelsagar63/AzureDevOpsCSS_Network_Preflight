@@ -1,0 +1,18 @@
+
+{
+  "id": "9f5c9664-6a89-4a57-9b5e-4d9a2e2dc2b7",
+  "name": "DnsLookup",
+  "friendlyName": "Network Preflight: DNS Lookup",
+  "description": "Resolve DNS records (A/AAAA/CNAME/TXT/NS) from the agent. Optional custom resolver.",
+  "category": "Utility",
+  "author": "Azure DevOps Support",
+  "visibility": [ "Build", "Release" ],
+  "version": { "Major": 1, "Minor": 0, "Patch": 0 },
+  "minimumAgentVersion": "2.221.0",
+  "inputs": [
+    { "name": "targets", "type": "multiLine", "label": "Hostnames", "required": true },
+    { "name": "recordType", "type": "pickList", "label": "Record type", "options": { "A": "A", "AAAA": "AAAA", "CNAME": "CNAME", "TXT": "TXT", "NS": "NS" }, "defaultValue": "A" },
+    { "name": "resolver", "type": "string", "label": "Custom DNS server (optional)", "required": false }
+  ],
+  "execution": { "Node20_1": { "target": "index.js" } }
+}
