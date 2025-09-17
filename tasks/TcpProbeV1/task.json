@@ -8,6 +8,7 @@
   "visibility": [ "Build", "Release" ],
   "version": { "Major": 1, "Minor": 0, "Patch": 0 },
   "minimumAgentVersion": "2.221.0",
+  "instanceNameFormat": "TCP Probe: $(targets)",
   "inputs": [
     { "name": "targets", "type": "multiLine", "label": "Targets (host:port)", "required": true },
     { "name": "timeoutSeconds", "type": "string", "label": "Timeout (seconds)", "defaultValue": "10" },

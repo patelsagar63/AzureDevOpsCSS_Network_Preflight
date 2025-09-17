@@ -8,6 +8,7 @@
   "visibility": [ "Build", "Release" ],
   "version": { "Major": 1, "Minor": 0, "Patch": 0 },
   "minimumAgentVersion": "2.221.0",
+  "instanceNameFormat": "DNS Lookup: $(recordType) $(targets)",
   "inputs": [
     { "name": "targets", "type": "multiLine", "label": "Hostnames", "required": true },
     { "name": "recordType", "type": "pickList", "label": "Record type", "options": { "A": "A", "AAAA": "AAAA", "CNAME": "CNAME", "TXT": "TXT", "NS": "NS" }, "defaultValue": "A" },

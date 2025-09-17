@@ -10,6 +10,7 @@
   "demands": [],
   "version": { "Major": 1, "Minor": 0, "Patch": 0 },
   "minimumAgentVersion": "2.221.0",
+  "instanceNameFormat": "HTTP Check: $(method) $(targets)",
   "inputs": [
     { "name": "targets", "type": "multiLine", "label": "Targets (URLs)", "required": true, "helpMarkDown": "List of URLs, one per line" },
     { "name": "method", "type": "pickList", "label": "Method", "options": { "HEAD": "HEAD", "GET": "GET" }, "defaultValue": "HEAD", "required": true },
