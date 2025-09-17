@@ -1,7 +1,7 @@
 {
   "manifestVersion": 1,
-  "id": "sagpatel@microsoft.com",
-  "publisher": "sagpatel@microsoft.com",
+  "id": "AzureDevOpsCSS-Sagar",
+  "publisher": "AzureDevOpsCSS-Sagar",
   "version": "1.0.0",
   "name": "AzureDevOpsCSS-Network Preflight",
   "description": "Validate reachability of critical endpoints from Azure Pipelines agents before production deployments.",
