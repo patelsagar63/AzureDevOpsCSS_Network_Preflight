@@ -1,5 +1,5 @@
 {
-  "name": "network-preflight",
+  "name": "AzureDevOpsCSS-Network Preflight",
   "version": "1.0.0",
   "description": "Azure DevOps extension that validates HTTP/DNS/TCP connectivity from pipeline agents before critical releases.",
   "private": true,
