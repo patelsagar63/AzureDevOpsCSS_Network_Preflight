@@ -1,18 +1,29 @@
 {
   "manifestVersion": 1,
-  "id": "AzureDevOpsCSS-Sagar",
+  "id": "network-preflight",
   "publisher": "AzureDevOpsCSS-Sagar",
+  "name": "Network Preflight (HTTP/DNS/TCP)",
   "version": "1.0.0",
-  "name": "AzureDevOpsCSS-Network Preflight",
-  "description": "Validate reachability of critical endpoints from Azure Pipelines agents before production deployments.",
-  "public": false,
-  "categories": [ "Azure Pipelines" ],
-  "targets": [
-    { "id": "Microsoft.VisualStudio.Services" }
+  "description": "Azure Pipelines tasks to validate HTTP, DNS, and TCP connectivity from build/release agents before critical deployments.",
+  "tags": [
+    "Network",
+    "Connectivity",
+    "Preflight",
+    "Azure Pipelines",
+    "Azure DevOps"
   ],
   "icons": {
     "default": "images/extension-icon.png"
   },
+  "public": false,
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
+    }
+  ],
+  "categories": [
+    "Azure Pipelines"
+  ],
   "files": [
     { "path": "tasks" },
     { "path": "README.md" },
@@ -20,22 +31,28 @@
   ],
   "contributions": [
     {
-      "id": "NetworkPreflight.HttpCheck",
+      "id": "network-preflight-httpcheck",
       "type": "ms.vss-distributed-task.task",
       "targets": [ "ms.vss-distributed-task.tasks" ],
-      "properties": { "name": "tasks/HttpCheckV1/task.json" }
+      "properties": {
+        "name": "tasks/HttpCheckV1/task.json"
+      }
     },
     {
-      "id": "NetworkPreflight.DnsLookup",
+      "id": "network-preflight-dnslookup",
       "type": "ms.vss-distributed-task.task",
       "targets": [ "ms.vss-distributed-task.tasks" ],
-      "properties": { "name": "tasks/DnsLookupV1/task.json" }
+      "properties": {
+        "name": "tasks/DnsLookupV1/task.json"
+      }
     },
     {
-      "id": "NetworkPreflight.TcpProbe",
+      "id": "network-preflight-tcpprobe",
       "type": "ms.vss-distributed-task.task",
       "targets": [ "ms.vss-distributed-task.tasks" ],
-      "properties": { "name": "tasks/TcpProbeV1/task.json" }
+      "properties": {
+        "name": "tasks/TcpProbeV1/task.json"
+      }
     }
   ]
 }
