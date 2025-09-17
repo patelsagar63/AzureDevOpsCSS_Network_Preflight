@@ -1,10 +1,10 @@
 
 {
   "manifestVersion": 1,
-  "id": "network-preflight",
-  "publisher": "YOUR_PUBLISHER_ID",
+  "id": "AzureDevOpsCSS-Sagar",
+  "publisher": "sagpatel@microsoft.com",
   "version": "1.0.0",
-  "name": "Network Preflight (HTTP/DNS/TCP)",
+  "name": "AzureDevOpsCSS-Network Preflight",
   "description": "Validate reachability of critical endpoints from Azure Pipelines agents before production deployments.",
   "public": false,
   "categories": [ "Azure Pipelines" ],
