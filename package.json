@@ -9,10 +9,13 @@
     "node": ">=20"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.json",
     "clean": "git clean -fdX",
-    "package": "tfx extension create --manifest-globs vss-extension.json",
-    "lint": "echo \"(add ESLint if desired)\""
+    "compile": "tsc -p tsconfig.json",
+    "bundle": "npx ncc build tasks/HttpCheckV1/index.js -o tasks/HttpCheckV1 && npx ncc build tasks/DnsLookupV1/index.js -o tasks/DnsLookupV1 && npx ncc build tasks/TcpProbeV1/index.js -o tasks/TcpProbeV1",
+    "build": "npm run compile && npm run bundle",
+    "validate": "grep -Rni 'azure-pipelines-task-lib' tasks/*/index.js || echo '✅ No external requires found'",
+    "package": "npm run build && tfx extension create --manifest-globs vss-extension.json --rev-version",
+    "release": "npm run package"
   },
   "dependencies": {
     "azure-pipelines-task-lib": "^4.0.0"
