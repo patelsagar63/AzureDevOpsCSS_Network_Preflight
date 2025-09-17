@@ -1,14 +1,25 @@
-
 import * as tl from 'azure-pipelines-task-lib/task';
 import * as net from 'net';
 import * as tls from 'tls';
+import * as fs from 'fs';
+import * as path from 'path';
+
+function publishSummary(name: string, fileBase: string, markdown: string) {
+  const dir = process.env['AGENT_TEMPDIRECTORY'] || process.cwd();
+  const filePath = path.join(dir, fileBase);
+  fs.writeFileSync(filePath, markdown, { encoding: 'utf8' });
+  console.log(
+    `##vso[task.addattachment type=Distributedtask.Core.Summary;name=${name}]${filePath}`
+  );
+}
 
 function probe(host: string, port: number, timeoutMs: number, useTls: boolean, serverName?: string) {
   return new Promise<{latency:number, alpn?: string}>((resolve, reject) => {
     const started = Date.now();
     const onOk = (sock: net.Socket | tls.TLSSocket) => {
       const latency = Date.now() - started;
-      const alpn = (sock as tls.TLSSocket).alpnProtocol;
+      // Coerce false -> undefined to satisfy the declared type
+      const alpn = ('alpnProtocol' in sock) ? ((sock as tls.TLSSocket).alpnProtocol || undefined) : undefined;
       sock.destroy();
       resolve({ latency, alpn });
     };
@@ -18,7 +29,7 @@ function probe(host: string, port: number, timeoutMs: number, useTls: boolean, s
     let sock: net.Socket | tls.TLSSocket;
     if (useTls) {
       if (serverName) (options as tls.ConnectionOptions).servername = serverName;
-      (options as tls.ConnectionOptions).rejectUnauthorized = true; // default secure
+      (options as tls.ConnectionOptions).rejectUnauthorized = true; // keep secure by default
       sock = tls.connect(options, () => onOk(sock));
     } else {
       sock = net.connect(options, () => onOk(sock));
@@ -40,7 +51,7 @@ async function run() {
       const [host, portStr] = entry.includes(':') ? entry.split(':') : [entry, '443'];
       const port = parseInt(portStr, 10);
       try {
-        const r = await probe(host, port, timeoutMs, useTls, serverName);
+        const r = await probe(host, port, timeoutMs, useTls, serverName || undefined);
         results.push({ target: entry, passed: true, ...r });
       } catch (e: any) {
         results.push({ target: entry, passed: false, error: e.message });
@@ -51,7 +62,7 @@ async function run() {
     for (const r of results) {
       lines.push(`| ${r.target} | ${r.latency ?? '-'} | ${r.alpn ?? '-'} | ${r.passed ? '✅' : '❌'} |`);
     }
-    await tl.summary.addAttachment('text/markdown', 'tcp-summary.md', Buffer.from(lines.join('\n')));
+    publishSummary('Network Preflight — TCP', 'tcp-summary.md', lines.join('\n'));
 
     const failed = results.filter(r => !r.passed).map(r => r.target);
     failed.length
@@ -61,3 +72,4 @@ async function run() {
     tl.setResult(tl.TaskResult.Failed, err.message ?? String(err));
   }
 }
+run();

@@ -1,6 +1,18 @@
-
 import * as tl from 'azure-pipelines-task-lib/task';
 import { setTimeout as delay } from 'timers/promises';
+import * as fs from 'fs';
+import * as path from 'path';
+
+// Publish a Markdown job summary using Azure Pipelines logging command
+function publishSummary(name: string, fileBase: string, markdown: string) {
+  const dir = process.env['AGENT_TEMPDIRECTORY'] || process.cwd();
+  const filePath = path.join(dir, fileBase);
+  fs.writeFileSync(filePath, markdown, { encoding: 'utf8' });
+  // Attach as a job summary
+  console.log(
+    `##vso[task.addattachment type=Distributedtask.Core.Summary;name=${name}]${filePath}`
+  );
+}
 
 // Parse comma/range expressions like "200,204,301-302,200-399"
 function parseStatusExpr(expr: string) {
@@ -14,19 +26,13 @@ function parseStatusExpr(expr: string) {
 async function checkOnce(url: string, method: string, timeoutMs: number) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
-
   const init: RequestInit = { method, signal: controller.signal };
-
-  // Proxy support: honor env if respectProxyEnv=true; Node 20's fetch honors HTTPS_PROXY for https only if agent is provided.
-  // To keep the task dependency-light, we let customers set NO_PROXY where needed.
-  // If stronger proxy support is desired later, add 'https-proxy-agent' and set init.agent accordingly.
 
   const started = Date.now();
   const res = await fetch(url, init);
   const latency = Date.now() - started;
   clearTimeout(timer);
 
-  // Collect a few useful headers
   const server = res.headers.get('server') ?? undefined;
   const via = res.headers.get('via') ?? undefined;
 
@@ -62,6 +68,7 @@ async function run() {
       tl.debug(JSON.stringify(results[results.length - 1]));
     }
 
+    // Build and publish Markdown job summary
     const lines: string[] = [
       `# Network Preflight — HTTP(S)`,
       `| URL | Status | Latency (ms) | OK |`,
@@ -70,7 +77,7 @@ async function run() {
     for (const r of results) {
       lines.push(`| ${r.url} | ${r.status ?? r.error} | ${r.latency ?? '-'} | ${r.passed ? '✅' : '❌'} |`);
     }
-    await tl.summary.addAttachment('text/markdown', 'http-summary.md', Buffer.from(lines.join('\n')));
+    publishSummary('Network Preflight — HTTP(S)', 'http-summary.md', lines.join('\n'));
 
     const failed = results.filter(r => !r.passed).map(r => r.url);
     tl.setVariable('NetworkPreflight.FailedTargets', failed.join(','));
