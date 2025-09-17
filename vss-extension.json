@@ -3,39 +3,26 @@
   "id": "network-preflight",
   "publisher": "AzureDevOpsCSS-Sagar",
   "name": "Network Preflight (HTTP/DNS/TCP)",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Azure Pipelines tasks to validate HTTP, DNS, and TCP connectivity from build/release agents before critical deployments.",
-  "tags": [
-    "Network",
-    "Connectivity",
-    "Preflight",
-    "Azure Pipelines",
-    "Azure DevOps"
-  ],
-  "icons": {
-    "default": "images/extension-icon.png"
-  },
   "public": false,
-  "targets": [
-    {
-      "id": "Microsoft.VisualStudio.Services"
-    }
-  ],
-  "categories": [
-    "Azure Pipelines"
-  ],
+  "categories": [ "Azure Pipelines" ],
+  "targets": [ { "id": "Microsoft.VisualStudio.Services" } ],
+  "icons": { "default": "images/extension-icon.png" },
+
   "files": [
     { "path": "tasks" },
     { "path": "README.md" },
     { "path": "images" }
   ],
+
   "contributions": [
     {
       "id": "network-preflight-httpcheck",
       "type": "ms.vss-distributed-task.task",
       "targets": [ "ms.vss-distributed-task.tasks" ],
       "properties": {
-        "name": "tasks/HttpCheckV1/task.json"
+        "name": "tasks/HttpCheckV1"
       }
     },
     {
@@ -43,7 +30,7 @@
       "type": "ms.vss-distributed-task.task",
       "targets": [ "ms.vss-distributed-task.tasks" ],
       "properties": {
-        "name": "tasks/DnsLookupV1/task.json"
+        "name": "tasks/DnsLookupV1"
       }
     },
     {
@@ -51,7 +38,7 @@
       "type": "ms.vss-distributed-task.task",
       "targets": [ "ms.vss-distributed-task.tasks" ],
       "properties": {
-        "name": "tasks/TcpProbeV1/task.json"
+        "name": "tasks/TcpProbeV1"
       }
     }
   ]
