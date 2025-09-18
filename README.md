@@ -13,25 +13,27 @@ All tasks use the **Node 20** execution handler (current guidance for Azure Pipe
 
 ## YAML example
 
-pool: { vmImage: 'ubuntu-latest' }
+pool:
+  vmImage: 'ubuntu-latest'
+
 steps:
   - task: HttpCheck@1
-      inputs:
-        targets: |
-          https://contoso.com/health
-          https://learn.microsoft.com
-        method: HEAD
-        timeoutSeconds: 10
-        expectStatus: 200-399
+    inputs:
+      targets: |
+        https://contoso.com/health
+        https://learn.microsoft.com
+      method: HEAD
+      timeoutSeconds: 10
+      expectStatus: 200-399
 
   - task: DnsLookup@1
-      inputs:
-        targets: |
-          contoso.com
-        recordType: A
+    inputs:
+      targets: |
+        contoso.com
+      recordType: A
 
-    - task: TcpProbe@1
-      inputs:
-        targets: |
-          contoso.com/health:443
-        useTls: true
+  - task: TcpProbe@1
+    inputs:
+      targets: |
+        contoso.com:443
+      useTls: true
