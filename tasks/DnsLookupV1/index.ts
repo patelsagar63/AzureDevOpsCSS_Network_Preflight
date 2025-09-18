@@ -1,4 +1,4 @@
-import tl = require('azure-pipelines-task-lib/task');
+import tl = require('/../azure-pipelines-task-lib/task');
 import dns = require('dns');
 import fs = require('fs');
 import path = require('path');
