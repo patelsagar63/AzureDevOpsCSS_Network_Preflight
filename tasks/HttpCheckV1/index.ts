@@ -1,7 +1,8 @@
-import * as tl from 'azure-pipelines-task-lib/task';
+import tl = require('azure-pipelines-task-lib/task');
 import { setTimeout as delay } from 'timers/promises';
-import * as fs from 'fs';
-import * as path from 'path';
+import fs = require('fs');
+import path = require('path');
+
 
 // Publish a Markdown job summary using Azure Pipelines logging command
 function publishSummary(name: string, fileBase: string, markdown: string) {

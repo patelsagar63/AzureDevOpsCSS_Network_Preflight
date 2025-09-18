@@ -1,7 +1,8 @@
-import * as tl from 'azure-pipelines-task-lib/task';
-import * as dns from 'dns';
-import * as fs from 'fs';
-import * as path from 'path';
+import tl = require('azure-pipelines-task-lib/task');
+import dns = require('dns');
+import fs = require('fs');
+import path = require('path');
+
 
 function publishSummary(name: string, fileBase: string, markdown: string) {
   const dir = process.env['AGENT_TEMPDIRECTORY'] || process.cwd();
