@@ -13,13 +13,9 @@ All tasks use the **Node 20** execution handler (current guidance for Azure Pipe
 
 ## YAML example
 
-stages:
- stage: Preflight
- jobs:
-  job: NetworkChecks
-    pool: { vmImage: 'ubuntu-latest' }
-    steps:
-    - task: HttpCheck@1
+pool: { vmImage: 'ubuntu-latest' }
+steps:
+  - task: HttpCheck@1
       inputs:
         targets: |
           https://contoso.com/health
@@ -28,7 +24,7 @@ stages:
         timeoutSeconds: 10
         expectStatus: 200-399
 
-    - task: DnsLookup@1
+  - task: DnsLookup@1
       inputs:
         targets: |
           contoso.com
