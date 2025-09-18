@@ -14,16 +14,16 @@ All tasks use the **Node 20** execution handler (current guidance for Azure Pipe
 ## YAML example
 
 stages:
-- stage: Preflight
-  jobs:
-  - job: NetworkChecks
+ stage: Preflight
+ jobs:
+  job: NetworkChecks
     pool: { vmImage: 'ubuntu-latest' }
     steps:
     - task: HttpCheck@1
       inputs:
         targets: |
-          https://api.contoso.com/health
-          https://learn.microsoft.com/
+          https://contoso.com/health
+          https://learn.microsoft.com
         method: HEAD
         timeoutSeconds: 10
         expectStatus: 200-399
@@ -31,13 +31,11 @@ stages:
     - task: DnsLookup@1
       inputs:
         targets: |
-          api.contoso.com
-          contoso.database.windows.net
+          contoso.com
         recordType: A
 
     - task: TcpProbe@1
       inputs:
         targets: |
-          contoso.redis.cache.windows.net:6380
-          onprem-gateway.contoso.local:1433
+          contoso.com/health:443
         useTls: true
