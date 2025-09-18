@@ -16,9 +16,11 @@ https://marketplace.visualstudio.com/items?itemName=AzureDevOpsCSS-Sagar.AzureDe
 - DNS Lookup : Resolve A/AAAA/CNAME/TXT/NS records with optional custom DNS resolver.
 - TCP Probe : Test raw TCP connectivity to host:port with optional TLS and SNI support.
 
-All tasks run on Node 20 (current Azure Pipelines guidance).
 
 ## 📦 Tasks Overview
+
+All tasks run on Node 20 (current Azure Pipelines guidance).
+
 ---
 Task Name: 
 - HttpCheck@1
@@ -36,9 +38,9 @@ Key Inputs:
 
 ## 🛠 Inputs (Common)
 
-targets: Multi-line list of endpoints (URLs or host:port).
-timeoutSeconds: Timeout per check (default: 10).
-failOn (future enhancement): Control failure behavior.
+- targets: Multi-line list of endpoints (URLs or host:port).
+- timeoutSeconds: Timeout per check (default: 10).
+- failOn (future enhancement): Control failure behavior.
 
 ## YAML example
 ```yaml
