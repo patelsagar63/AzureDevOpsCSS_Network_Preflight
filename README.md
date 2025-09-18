@@ -11,7 +11,7 @@ https://marketplace.visualstudio.com/items?itemName=AzureDevOpsCSS-Sagar.AzureDe
 All tasks use the **Node 20** execution handler (current guidance for Azure Pipelines tasks).  
 
 ## YAML example
-
+```yaml
 pool:
   vmImage: 'ubuntu-latest'
 
