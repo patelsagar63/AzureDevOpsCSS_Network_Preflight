@@ -16,10 +16,10 @@
     "sourceMap": false
   },
   "include": [
-    "tasks/**/*.ts"
+    "tasks/**/*.ts",
+    "node_modules"
   ],
   "exclude": [
-    "node_modules",
     "**/*.test.ts"
   ]
 }
