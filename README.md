@@ -21,20 +21,10 @@ https://marketplace.visualstudio.com/items?itemName=AzureDevOpsCSS-Sagar.AzureDe
 
 All tasks run on Node 20 (current Azure Pipelines guidance).
 
----
-Task Name: 
-- HttpCheck@1
-- DnsLookup@1
-- TcpProbe@1
-Purpose:
-- Validate HTTP(S) endpoints
-- Resolve DNS records
-- Test TCP connectivity (TLS optional)
-Key Inputs:
-- targets, method, expectStatus
-- targets, recordType, resolver
-- targets, useTls, serverName
----
+| Task Name | Purpose | Key Inputs |
+| HttpCheck@1 | Validate HTTP(S) endpoints | targets, method, expectStatus |
+| DnsLookup@1 | Resolve DNS records | targets, recordType, resolver |
+| TcpProbe@1 | Test TCP connectivity (TLS optional) | targets, useTls, serverName |
 
 ## 🛠 Inputs (Common)
 
