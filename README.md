@@ -1,14 +1,44 @@
 ## Azure DevOps CSS - Network Preflight
 
-An Azure DevOps Pipelines extension that verifies reachability of critical endpoints **from the agent** before your production releases.
+An Azure DevOps Pipelines extension that validates network connectivity from the build/release agent before critical deployments. This helps you catch DNS, HTTP, or TCP connectivity issues early in your pipeline.
+
 https://marketplace.visualstudio.com/items?itemName=AzureDevOpsCSS-Sagar.AzureDevOpsCSS-Sagar
 
-## Tasks
-- **HTTP(S) Check** — status/latency, header hints
-- **DNS Lookup** — A/AAAA/CNAME/TXT/NS, optional custom resolver
-- **TCP Probe** — connect to host:port, optional TLS/SNI
+## ✅ Why use Network Preflight?
 
-All tasks use the **Node 20** execution handler (current guidance for Azure Pipelines tasks).  
+- Detect firewall or DNS issues before production releases.
+- Validate critical endpoints (APIs, databases, identity providers) from the actual agent environment.(Self-hosted or Mircosoft-hosted).
+- Reduce deployment failures caused by network misconfigurations.
+
+## 🚀 Features
+
+- HTTP(S) Check : Validate URLs for reachability, status codes, latency, and optional header checks.
+- DNS Lookup : Resolve A/AAAA/CNAME/TXT/NS records with optional custom DNS resolver.
+- TCP Probe : Test raw TCP connectivity to host:port with optional TLS and SNI support.
+
+All tasks run on Node 20 (current Azure Pipelines guidance).
+
+## 📦 Tasks Overview
+---
+Task Name: 
+- HttpCheck@1
+- DnsLookup@1
+- TcpProbe@1
+Purpose:
+- Validate HTTP(S) endpoints
+- Resolve DNS records
+- Test TCP connectivity (TLS optional)
+Key Inputs:
+- targets, method, expectStatus
+- targets, recordType, resolver
+- targets, useTls, serverName
+---
+
+## 🛠 Inputs (Common)
+
+targets: Multi-line list of endpoints (URLs or host:port).
+timeoutSeconds: Timeout per check (default: 10).
+failOn (future enhancement): Control failure behavior.
 
 ## YAML example
 ```yaml
