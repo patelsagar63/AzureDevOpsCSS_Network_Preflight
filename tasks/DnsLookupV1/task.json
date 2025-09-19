@@ -3,6 +3,7 @@
   "name": "DnsLookup",
   "friendlyName": "Network Preflight: DNS Lookup",
   "description": "Resolve DNS records (A/AAAA/CNAME/TXT/NS) from the agent. Optional custom resolver.",
+  "helpMarkDown": "Runs DNS lookups from the agent. Tip: set 'resolver' (e.g. 8.8.8.8) to bypass restrictive corporate DNS during diagnostics.",
   "category": "Utility",
   "author": "Azure DevOps Support",
   "visibility": [ "Build", "Release" ],
@@ -11,8 +12,8 @@
   "instanceNameFormat": "DNS Lookup: $(recordType) $(targets)",
   "inputs": [
     { "name": "targets", "type": "multiLine", "label": "Hostnames", "required": true },
-    { "name": "recordType", "type": "pickList", "label": "Record type", "options": { "A": "A", "AAAA": "AAAA", "CNAME": "CNAME", "TXT": "TXT", "NS": "NS" }, "defaultValue": "A" },
-    { "name": "resolver", "type": "string", "label": "Custom DNS server (optional)", "required": false }
+    { "name": "recordType", "type": "pickList", "label": "Record type", "options": { "A": "A", "AAAA": "AAAA", "CNAME": "CNAME", "TXT": "TXT", "NS": "NS", "helpMarkDown": "DNS record type to resolve" }, "defaultValue": "A" },
+    { "name": "resolver", "type": "string", "label": "Custom DNS server (optional)", "required": false, "helpMarkDown": "IPv4/IPv6 address of a resolver to query (e.g., 8.8.8.8). If empty, the agent’s default resolver is used." }
   ],
   "execution": { "Node20_1": { "target": "index.js" } }
 }
