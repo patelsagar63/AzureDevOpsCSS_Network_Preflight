@@ -13,6 +13,7 @@
   "files": [
     { "path": "tasks" },
     { "path": "README.md" },
+    { "path": "overview.md" },
     { "path": "images" }
   ],
 
