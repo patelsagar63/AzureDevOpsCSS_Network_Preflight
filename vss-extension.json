@@ -5,10 +5,10 @@
   "name": "AzureDevOpsCSS-Network Preflight",
   "version": "1.0.3",
   "description": "Azure Pipelines tasks to validate HTTP, DNS, and TCP connectivity from build/release agents before critical deployments.",
-  "public": false,
+  "public": true,
   "categories": [ "Azure Pipelines" ],
   "targets": [ { "id": "Microsoft.VisualStudio.Services" } ],
-  "icons": { "default": "images/extension-icon.png" },
+  "icons": { "default": "./images/extension-icon.png" },
 
   "files": [
     { "path": "tasks" },
