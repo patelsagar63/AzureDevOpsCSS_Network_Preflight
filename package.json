@@ -8,6 +8,7 @@
   "engines": {
     "node": ">=20"
   },
+   "content": {"details": { "path": "overview.md" } },
   "scripts": {
     "clean": "git clean -fdX",
     "compile": "tsc -p tsconfig.json",
