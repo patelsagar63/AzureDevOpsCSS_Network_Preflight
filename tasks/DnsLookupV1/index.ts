@@ -34,7 +34,7 @@ async function run() {
   try {
     // Inputs
     const names = tl.getDelimitedInput('targets', '\n', true).map(sanitizeName).filter(Boolean);
-    const typeInput = (tl.getInput('recordType', true) || 'A').toUpperCase() as dns.RecordType;
+    const typeInput = (tl.getInput('recordType', true) || 'A');
     const resolverAddr = tl.getInput('resolver', false);
     const timeoutSeconds = Number(tl.getInput('timeoutSeconds', false) || '10');
     const timeoutMs = isFinite(timeoutSeconds) && timeoutSeconds > 0 ? timeoutSeconds * 1000 : 10000;
