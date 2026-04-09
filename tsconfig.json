@@ -10,7 +10,6 @@
     "skipDefaultLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "noEmitOnError": true,
-    "ignoreDeprecations": "6.0",
     "rootDir": ".",
     "outDir": ".",
     "sourceMap": false

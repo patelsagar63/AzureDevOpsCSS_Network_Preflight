@@ -58,6 +58,7 @@ steps:
         contoso.com:443
       useTls: true
 ```
+
 ## ⚠️ Support Disclaimer
 This extension is not an officially supported Microsoft product — for issues or feature requests, please create a GitHub issue in the https://github.com/patelsagar63/Network_Preflight instead of opening a Microsoft Support request.
 It is developed and published independently by Microsoft support engineers to assist customers and internal support teams with troubleshooting network connectivity scenarios in Azure DevOps Pipelines.
