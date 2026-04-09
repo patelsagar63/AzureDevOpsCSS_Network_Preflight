@@ -2,18 +2,19 @@
   "compilerOptions": {
     "target": "ES2022",
     "module": "CommonJS",
-    "lib": ["ES2022", "DOM"],             // DOM is needed for fetch() typing on Node 20
+    "lib": ["ES2022", "DOM"],
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,                 // <-- critical: don't type-check node_modules
-    "skipDefaultLibCheck": true,          // <-- optional, further reduces noise
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "noEmitOnError": true,
-    "outDir": ".",
+    "ignoreDeprecations": "6.0",
     "rootDir": ".",
+    "outDir": ".",
     "sourceMap": false
   },
-  "include": ["tasks/**/*.ts"],           // <-- limit to your task sources only
+  "include": ["tasks/**/*.ts"],
   "exclude": ["node_modules", "**/*.test.ts"]
 }

@@ -1,9 +1,4 @@
-# Azure DevOps – Network Preflight (HTTP/DNS/TCP)
-
-[![Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/AzureDevOpsCSS-Sagar.AzureDevOpsCSS-Sagar?label=Marketplacearketplace.visualstudio.com/items?itemName=AzureDevOpsCSS-Sagar.AzureDevOpsCSS-Sagar)
-[ttps://img.shields.io/visual-studio-marketplace/i/AzureDevOpsCSS-Sagar.AzureDevOpsCSS-Sagar?color=blue](https://marketplace.visualstudio.com/items?itemName=AzureDevOpsCSS-Sagar.AzureDevOpsCSS-Sagar)
-[![Rating](https://img.shields.io/visual-studio-marketplace/rsCSS-Sagar.AzureDevOpsCSS-Sagar?color=ffb300](https://marketplace.visualstudio.com/items?itemName=AzureDevOpsCSS-Sagar.AzureDevOpsCSS-Sagar)
-
+# Network Preflight (HTTP/DNS/TCP)
 Validate **HTTP**, **DNS**, and **TCP** connectivity from your build/release agents **before critical deployments**. Catch network issues early, fail fast, and ship with confidence.
 
 ---
@@ -62,3 +57,9 @@ steps:
       targets: |
         contoso.com:443
       useTls: true
+
+⚠️ Support Disclaimer
+This extension is not an officially supported Microsoft product — for issues or feature requests, please create a GitHub issue in the https://github.com/patelsagar63/Network_Preflight instead of opening a Microsoft Support request.
+It is developed and published independently by Microsoft support engineers to assist customers and internal support teams with troubleshooting network connectivity scenarios in Azure DevOps Pipelines.
+This extension is provided as-is, without any warranties or guarantees of support from Microsoft.
+Use of this extension in production environments should follow your organization's internal validation and governance processes.

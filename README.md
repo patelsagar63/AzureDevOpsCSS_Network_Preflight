@@ -1,4 +1,4 @@
-## Azure DevOps CSS - Network Preflight
+## Network Preflight
 
 An **Azure DevOps Pipelines extension** that validates network connectivity **from the build/release agent** before critical deployments. This helps you catch DNS, HTTP, or TCP connectivity issues early in your pipeline.
 
@@ -57,3 +57,9 @@ steps:
       targets: |
         contoso.com:443
       useTls: true
+      
+⚠️ Support Disclaimer
+This extension is not an officially supported Microsoft product — for issues or feature requests, please create a GitHub issue in the https://github.com/patelsagar63/Network_Preflight instead of opening a Microsoft Support request.
+It is developed and published independently by Microsoft support engineers to assist customers and internal support teams with troubleshooting network connectivity scenarios in Azure DevOps Pipelines.
+This extension is provided as-is, without any warranties or guarantees of support from Microsoft.
+Use of this extension in production environments should follow your organization's internal validation and governance processes.
